@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, FlatList, Animated } from 'react-native';
+import { router } from 'expo-router';
+import { View, Text, StyleSheet, FlatList, Animated, Image } from 'react-native';
 
 import { Counter } from '@/components/Counter';
 import { Header } from '@/components/Header';
@@ -332,6 +333,12 @@ export default function ProductScreen() {
       amount: 80,
       per: '100 Gram',
     },
+    images: [
+      require('@/assets/products/1.png'),
+      require('@/assets/products/2.png'),
+      require('@/assets/products/3.png'),
+      require('@/assets/products/4.png'),
+    ],
     units: [
       { id: '01', value: '01', type: 'KG' },
       { id: '02', value: '02', type: 'KG' },
@@ -353,10 +360,26 @@ export default function ProductScreen() {
         )}
         scrollEventThrottle={16}
       >
-        <Animated.Image
-          source={product.image}
-          style={[styles.image, { opacity }]}
-        />
+        <Animated.View style={[styles.imageContainer, { opacity }]}>
+          <Image
+            source={product.image}
+            style={styles.image}
+          />
+          <View style={styles.imageOverlay}>
+            <View style={[styles.imageOverlayItem, styles.imageOverlayItemSelected]}>
+              <Image source={product.image} style={styles.imageOverlayItemImage} />
+            </View>
+            <View style={[styles.imageOverlayItem, styles.imageOverlayItemSelected]}>
+              <Image source={product.image} style={styles.imageOverlayItemImage} />
+            </View>
+            <View style={[styles.imageOverlayItem, styles.imageOverlayItemSelected]}>
+              <Image source={product.image} style={styles.imageOverlayItemImage} />
+            </View>
+            <View style={[styles.imageOverlayItem, styles.imageOverlayItemSelected]}>
+              <Image source={product.image} style={styles.imageOverlayItemImage} />
+            </View>
+          </View>
+        </Animated.View>
 
         <View style={styles.header}>
           <Text style={styles.title}>{product.title}</Text>
@@ -381,14 +404,15 @@ export default function ProductScreen() {
             image={require("../assets/icons/lotus.png")}
           />
           <ProductInfoCard
-            value="1 Year"
-            label="Expiration"
-            image={require("../assets/icons/calendar.png")}
-          />
-          <ProductInfoCard
             value="4.8 (256)"
             label="Reviews"
             image={require("../assets/icons/favorite.png")}
+            onPress={() => router.push("/")}
+          />
+          <ProductInfoCard
+            value="1 Year"
+            label="Expiration"
+            image={require("../assets/icons/calendar.png")}
           />
           <ProductInfoCard
             value="80 kcal"
@@ -444,98 +468,131 @@ export default function ProductScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    position: 'relative',
+    position: "relative",
     backgroundColor: Colors.background,
     padding: 16,
+  },
+  imageContainer: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
+    height: PRODUCT_IMAGE_HEIGHT,
+    alignSelf: "center",
+    marginTop: 32,
   },
   image: {
     width: PRODUCT_IMAGE_HEIGHT,
     height: PRODUCT_IMAGE_HEIGHT,
-    resizeMode: 'contain',
-    alignSelf: 'center',
-    marginTop: 16,
+    resizeMode: "contain",
+    marginRight: 24,
+  },
+  imageOverlay: {
+    position: "absolute",
+    top: 0,
+    right: 8,
+    height: "100%",
+    width: 60,
+    gap: 8,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imageOverlayItem: {
+    width: 50,
+    height: 50,
+    borderRadius: 10,
+    overflow: "hidden",
+    padding: 4,
+  },
+  imageOverlayItemSelected: {
+    backgroundColor: Colors.primaryLight,
+    borderWidth: 1,
+    borderColor: Colors.primary,
+  },
+  imageOverlayItemImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain",
   },
   header: {
     marginTop: PRODUCT_IMAGE_HEIGHT * 0.35,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 8,
   },
   title: {
     fontSize: 24,
-    fontWeight: '600',
-    color: '#000',
+    fontWeight: "600",
+    color: "#000",
   },
   priceContainer: {
     marginBottom: 16,
   },
   price: {
     fontSize: 18,
-    color: '#17A563',
-    fontWeight: '600',
+    color: "#17A563",
+    fontWeight: "600",
   },
   originalPrice: {
     fontSize: 14,
-    color: '#666',
-    textDecorationLine: 'line-through',
+    color: "#666",
+    textDecorationLine: "line-through",
   },
   description: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
     lineHeight: 20,
     marginBottom: 24,
   },
 
-
   infoGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    flexWrap: "wrap",
     gap: 8,
     marginBottom: 24,
   },
-
 
   section: {
     marginBottom: 24,
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: "600",
     marginBottom: 16,
   },
   gap: {
     gap: 10,
   },
 
-
   footer: {
     padding: 16,
     borderTopWidth: 1,
-    borderTopColor: '#eee',
+    borderTopColor: "#eee",
   },
   cartButton: {
-    backgroundColor: '#17A563',
+    backgroundColor: "#17A563",
     borderRadius: 8,
     padding: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   cartButtonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   cartBadge: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     paddingHorizontal: 12,
     paddingVertical: 4,
     borderRadius: 16,
   },
   cartBadgeText: {
-    color: '#17A563',
+    color: "#17A563",
     fontSize: 12,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });

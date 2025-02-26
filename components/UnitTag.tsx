@@ -11,10 +11,10 @@ interface UnitTagProps {
 
 export const UnitTag = ({ unit, type, selected = false, onPress = () => {} }: UnitTagProps) => {
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.container, selected && styles.selected]}>
+    <TouchableOpacity onPress={onPress} style={[styles.container, selected && styles.selectedContainer]}>
       <Image source={require('@/assets/images/tag.png')} style={styles.image} />
       <Text style={styles.unit}>{unit}</Text>
-      <Text style={styles.type}>{type}</Text>
+      <Text style={[styles.type, selected && styles.selectedType]}>{type}</Text>
     </TouchableOpacity>
   );
 };
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.lightGrey,
   },
-  selected: {
+  selectedContainer: {
     borderColor: Colors.primary,
     backgroundColor: Colors.primaryLight2,
   },
@@ -54,5 +54,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: Colors.grey,
     marginTop: 4,
+  },
+  selectedType: {
+    color: Colors.primary,
   },
 });

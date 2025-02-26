@@ -13,23 +13,26 @@ type ProductInfoCardProps = {
   value: string;
   label: string;
   image: ImageSourcePropType;
-  onPress?: () => void;
+  onPress?: (() => void) | null;
 };
 
 export const ProductInfoCard = ({
   value,
   label,
   image,
-  onPress = () => {},
-}: ProductInfoCardProps) => (
-  <TouchableOpacity style={styles.container} onPress={onPress}>
-    <Image source={image} style={styles.image} />
-    <View>
-      <Text style={styles.value}>{value}</Text>
-      <Text style={styles.label}>{label}</Text>
-    </View>
-  </TouchableOpacity>
-);
+  onPress = null,
+}: ProductInfoCardProps) => {
+  const Container = onPress ? TouchableOpacity : View;
+  return (
+    <Container style={styles.container} onPress={onPress || undefined}>
+      <Image source={image} style={styles.image} />
+      <View>
+        <Text style={styles.value}>{value}</Text>
+        <Text style={styles.label}>{label}</Text>
+      </View>
+    </Container>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
