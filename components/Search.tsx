@@ -8,7 +8,7 @@ const SPACING = 16;
 
 export const Search = () => {
   return (
-    <TouchableOpacity style={styles.container} onPress={() => router.push("/")}>
+    <TouchableOpacity style={styles.container} onPress={() => router.push("/search")}>
       <SearchIcon style={styles.icon} />
       <TextInput
         style={styles.input}

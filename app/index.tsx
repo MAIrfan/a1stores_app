@@ -335,6 +335,12 @@ export default function Home() {
     extrapolate: "clamp",
   });
 
+  const subCategoriesTranslateY = scrollY.interpolate({
+    inputRange: [STICKY_SUB_CATEGORIES_HEIGHT, STICKY_SUB_CATEGORIES_HEIGHT],
+    outputRange: [-STICKY_SUB_CATEGORIES_HEIGHT, 0],
+    extrapolate: "clamp",
+  });
+
   const [selectedIndex, setSelectedIndex] = useState(0);
   const listRefs = useRef<FlatList[]>([]);
   const isSyncing = useRef(false);
@@ -409,7 +415,7 @@ export default function Home() {
         style={[
           styles.stickyHeader,
           styles.stickySubCategories,
-          { opacity: subCategoriesOpacity },
+          { opacity: subCategoriesOpacity, transform: [{ translateY: subCategoriesTranslateY }] },
         ]}
       >
         <SubCategories

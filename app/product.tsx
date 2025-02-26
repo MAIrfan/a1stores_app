@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { router } from 'expo-router';
-import { View, Text, StyleSheet, FlatList, Animated, Image } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Animated, Image, TouchableOpacity } from 'react-native';
 
 import { Counter } from '@/components/Counter';
 import { Header } from '@/components/Header';
@@ -305,12 +305,46 @@ export default function ProductScreen() {
   const [quantity, setQuantity] = useState(1);
   const [selectedUnit, setSelectedUnit] = useState('01');
   const scrollY = new Animated.Value(0);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const mainImageOpacity = new Animated.Value(1);
+  const mainImageScale = new Animated.Value(1);
 
   const opacity = scrollY.interpolate({
     inputRange: [0, PRODUCT_IMAGE_HEIGHT * 0.8],
     outputRange: [1, 0],
     extrapolate: 'clamp'
   });
+
+  const animateImageChange = (newIndex: number) => {
+    // Fade out and scale down current image
+    Animated.parallel([
+      Animated.timing(mainImageOpacity, {
+        toValue: 0.5,
+        duration: 150,
+        useNativeDriver: true,
+      }),
+      Animated.timing(mainImageScale, {
+        toValue: 0.95,
+        duration: 150,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      setSelectedImageIndex(newIndex);
+      // Fade in and scale up new image
+      Animated.parallel([
+        Animated.timing(mainImageOpacity, {
+          toValue: 1,
+          duration: 150,
+          useNativeDriver: true,
+        }),
+        Animated.timing(mainImageScale, {
+          toValue: 1,
+          duration: 150,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    });
+  };
 
   const product: any = {
     id: '1',
@@ -361,23 +395,29 @@ export default function ProductScreen() {
         scrollEventThrottle={16}
       >
         <Animated.View style={[styles.imageContainer, { opacity }]}>
-          <Image
-            source={product.image}
-            style={styles.image}
+          <Animated.Image
+            source={product.images[selectedImageIndex]}
+            style={[
+              styles.image,
+              {
+                opacity: mainImageOpacity,
+                transform: [{ scale: mainImageScale }],
+              },
+            ]}
           />
           <View style={styles.imageOverlay}>
-            <View style={[styles.imageOverlayItem, styles.imageOverlayItemSelected]}>
-              <Image source={product.image} style={styles.imageOverlayItemImage} />
-            </View>
-            <View style={[styles.imageOverlayItem, styles.imageOverlayItemSelected]}>
-              <Image source={product.image} style={styles.imageOverlayItemImage} />
-            </View>
-            <View style={[styles.imageOverlayItem, styles.imageOverlayItemSelected]}>
-              <Image source={product.image} style={styles.imageOverlayItemImage} />
-            </View>
-            <View style={[styles.imageOverlayItem, styles.imageOverlayItemSelected]}>
-              <Image source={product.image} style={styles.imageOverlayItemImage} />
-            </View>
+            {product.images.map((image: number, index: number) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => animateImageChange(index)}
+                style={[
+                  styles.imageOverlayItem,
+                  selectedImageIndex === index && styles.imageOverlayItemSelected,
+                ]}
+              >
+                <Image source={image} style={styles.imageOverlayItemImage} />
+              </TouchableOpacity>
+            ))}
           </View>
         </Animated.View>
 
@@ -502,18 +542,21 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 10,
-    overflow: "hidden",
+    overflow: 'hidden',
     padding: 4,
+    borderWidth: 1,
+    borderColor: 'transparent',
+    backgroundColor: Colors.background,
   },
   imageOverlayItemSelected: {
     backgroundColor: Colors.primaryLight,
-    borderWidth: 1,
     borderColor: Colors.primary,
+    transform: [{ scale: 1.05 }],
   },
   imageOverlayItemImage: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "contain",
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
   },
   header: {
     marginTop: PRODUCT_IMAGE_HEIGHT * 0.35,
