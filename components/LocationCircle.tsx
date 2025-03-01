@@ -1,16 +1,16 @@
 import { View, StyleSheet } from "react-native";
 
-import { LocationIcon as LocationIconSvg } from "@/components/Icons";
+import { LocationIcon } from "@/components/Icons";
 import { Colors } from "@/constants";
 
-type LocationIconProps = {
+type LocationCircleProps = {
   size?: number;
 };
 
-export const LocationIcon = ({ size = 18 }: LocationIconProps) => (
+export const LocationCircle = ({ size = 18 }: LocationCircleProps) => (
   <View style={styles.container}>
     <View style={[styles.icon, { width: size, height: size, borderRadius: size / 2 }]}>
-      <LocationIconSvg size={size / 1.5} />
+      <LocationIcon size={size / 1.5} />
     </View>
   </View>
 );

@@ -30,74 +30,79 @@ export const PlusIcon = () => (
   <Feather name="plus" size={20} color="#fff" />
 );
 
-export const CloseIcon = () => (
-  <Feather name="x" size={20} color="#fff" />
+export const CloseIcon = ({ color = Colors.dark }: { color?: string }) => (
+  <Feather name="x" size={20} color={color} />
 );
 
-export const StoreIcon = () => (
-  <MaterialCommunityIcons name="store" size={24} color="#fff" />
+export const StoreIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="store" size={24} color={color} />
 );
 
-export const PhonepeIcon = () => (
-  <MaterialCommunityIcons name="phone" size={24} color="#fff" />
+export const PhonepeIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="phone" size={24} color={color} />
 );
 
-export const ProfileIcon = () => (
-  <MaterialCommunityIcons name="account" size={24} color="#fff" />
+export const ProfileIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="account" size={24} color={color} />
 );
 
-export const NotificationIcon = () => (
-  <MaterialCommunityIcons name="bell" size={24} color="#fff" />
+export const NotificationIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="bell" size={24} color={color} />
 );
 
-export const OrderIcon = () => (
-  <MaterialCommunityIcons name="cart" size={24} color="#fff" />
+export const OrderIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="cart" size={24} color={color} />
 );
 
-export const AddressIcon = () => (
-  <MaterialCommunityIcons name="map-marker" size={24} color="#fff" />
+export const AddressIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="map-marker" size={24} color={color} />
 );
 
-export const SecurityIcon = () => (
-  <MaterialCommunityIcons name="lock" size={24} color="#fff" />
+export const SecurityIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="lock" size={24} color={color} />
 );
 
-export const LogoutIcon = () => (
-  <MaterialCommunityIcons name="logout" size={24} color="#fff" />
+export const LogoutIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="logout" size={24} color={color} />
 );
 
-export const CameraIcon = () => (
-  <MaterialCommunityIcons name="camera" size={24} color="#fff" />
+export const CameraIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="camera" size={24} color={color} />
 );
 
-export const EditIcon = () => (
-  <MaterialCommunityIcons name="pencil" size={20} color="#17A563" />
+export const EditIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="pencil" size={20} color={color} />
 );
 
-export const CardIcon = () => (
-  <MaterialCommunityIcons name="credit-card" size={24} color="#17A563" />
+export const CardIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="credit-card" size={24} color={color} />
 );
 
-export const UPIIcon = () => (
-  <MaterialCommunityIcons name="bank" size={24} color="#17A563" />
+export const UPIIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="bank" size={24} color={color} />
 );
 
-export const WalletIcon = () => (
-  <MaterialCommunityIcons name="wallet" size={24} color="#17A563" />
+export const WalletIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="wallet" size={24} color={color} />
 );
 
-export const PayLaterIcon = () => (
-  <MaterialCommunityIcons name="clock" size={24} color="#17A563" />
+export const PayLaterIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="clock" size={24} color={color} />
 );
 
-export const BackIcon = () => (
-  <MaterialCommunityIcons name="chevron-left" size={24} color="#06161C" />
+export const BackIcon = ({ color = Colors.dark }: { color?: string }) => (
+  <MaterialCommunityIcons name="chevron-left" size={24} color={color} />
 );
 
-export const EyeIcon = () => (
-  <MaterialCommunityIcons name="eye" size={24} color="#17A563" />
+export const EyeIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="eye" size={24} color={color} />
 );
 
-export const LoginIcon = () => (
-  <MaterialCommunityIcons name="login" size={24} color="#17A563" />
+export const LoginIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="login" size={24} color={color} />
 );
+
+export const TimeIcon = ({ color = Colors.primary }: { color?: string }) => (
+  <MaterialCommunityIcons name="clock" size={24} color={color} />
+);
+

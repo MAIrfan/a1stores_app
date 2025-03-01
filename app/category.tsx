@@ -356,7 +356,7 @@ export default function CategoryPage() {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView color={Colors.transparent} />
+      <SafeAreaView />
       <Header title="Categories" style={{ paddingHorizontal: 16 }} />
       <View style={{ flexDirection: 'row' }}>
         {/* Categories List with its own scroll */}

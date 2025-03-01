@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 
-import { LocationIcon } from "./LocationIcon";
+import { LocationIcon } from "./LocationCircle";
 import { Colors } from "@/constants";
 
 type SelectedAddressItemProps = {

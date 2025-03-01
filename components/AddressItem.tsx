@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import { Radio } from "./Radio";
-import { LocationIcon } from "./LocationIcon";
+import { LocationCircle } from "./LocationCircle";
 import { Colors } from "@/constants";
 import { getShadow } from "@/helpers/shadow";
 
@@ -25,7 +25,7 @@ export const AddressItem = ({ address, onSelectAddress }: AddressItemProps) => {
       }
     >
       <View style={styles.wrapper}>
-        <LocationIcon size={30} />
+        <LocationCircle size={30} />
         <View style={styles.flex}>
           <View style={styles.header}>
             <Text style={styles.type}>{address.type}</Text>

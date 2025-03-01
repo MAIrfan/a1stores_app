@@ -27,7 +27,7 @@ export const HomeHeader = () => {
             <Text style={styles.badgeText}>12</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton} onPress={() => router.push("/")}>
+        <TouchableOpacity style={styles.iconButton} onPress={() => router.push("/account")}>
           <UserCircleIcon />
         </TouchableOpacity>
       </View>

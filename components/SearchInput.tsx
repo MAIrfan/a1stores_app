@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { CloseIcon, SearchIcon } from './Icons';
-
+import { CloseIcon, SearchIcon, BackIcon } from './Icons';
+import { SafeAreaView } from './SafeAreaView';
+import { Colors } from '@/constants';
 type SearchInputProps = {
   value: string;
   onChangeText: (text: string) => void;
@@ -11,6 +12,10 @@ type SearchInputProps = {
 export function SearchInput({ value, onChangeText, onClose }: SearchInputProps) {
   return (
     <View style={styles.container}>
+      <SafeAreaView />
+      <TouchableOpacity style={styles.backButton} onPress={onClose}>
+        <BackIcon />
+      </TouchableOpacity>
       <View style={styles.inputContainer}>
         <View style={styles.searchIcon}>
           <SearchIcon />
@@ -26,7 +31,6 @@ export function SearchInput({ value, onChangeText, onClose }: SearchInputProps) 
         {value.length > 0 && (
           <TouchableOpacity 
             onPress={() => onChangeText('')}
-            style={styles.clearButton}
           >
             <CloseIcon />
           </TouchableOpacity>
@@ -40,17 +44,27 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 16,
-    gap: 12,
-    backgroundColor: '#fff',
+    padding: 8,
+    backgroundColor: Colors.background,
+  },
+  backButton: {
+    width: 44,
+    height: 44,
+    backgroundColor: Colors.primaryLight2,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   inputContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f0f9f4',
+    backgroundColor: Colors.primaryLight2,
     borderRadius: 100,
     paddingHorizontal: 16,
+    borderWidth: 1,
+    borderColor: Colors.primary,
+    marginLeft: 16,
   },
   input: {
     flex: 1,
@@ -61,17 +75,5 @@ const styles = StyleSheet.create({
   searchIcon: {
     width: 20,
     height: 20,
-    tintColor: '#666',
-  },
-  clearButton: {
-    padding: 8,
-  },
-  backButton: {
-    width: 40,
-    height: 40,
-    backgroundColor: '#f0f9f4',
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 }); 

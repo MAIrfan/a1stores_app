@@ -395,7 +395,7 @@ export default function Home() {
 
   return (
     <>
-      <SafeAreaView />
+      <SafeAreaView color={Colors.primary} />
 
       <Animated.View
         style={[

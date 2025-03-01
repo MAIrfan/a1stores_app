@@ -302,12 +302,12 @@ const similarProducts: any[] = [
 ];
 
 export default function ProductScreen() {
-  const [quantity, setQuantity] = useState(1);
-  const [selectedUnit, setSelectedUnit] = useState('01');
   const scrollY = new Animated.Value(0);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const mainImageOpacity = new Animated.Value(1);
   const mainImageScale = new Animated.Value(1);
+  const [quantity, setQuantity] = useState(1);
+  const [selectedUnit, setSelectedUnit] = useState('01');
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const opacity = scrollY.interpolate({
     inputRange: [0, PRODUCT_IMAGE_HEIGHT * 0.8],
@@ -383,7 +383,7 @@ export default function ProductScreen() {
   return (
     <View style={styles.container}>
       <Circle animatedValue={scrollY} />
-      <SafeAreaView color="transparent" />
+      <SafeAreaView />
       <Header type="invert" style={{ paddingBottom: 0 }} />
       <Animated.ScrollView
         style={{ flex: 1 }}
@@ -444,10 +444,10 @@ export default function ProductScreen() {
             image={require("../assets/icons/lotus.png")}
           />
           <ProductInfoCard
-            value="4.8 (256)"
+            value={`${product.reviews.rating} (${product.reviews.count})`}
             label="Reviews"
             image={require("../assets/icons/favorite.png")}
-            onPress={() => router.push("/")}
+            onPress={() => router.push('/reviews')}
           />
           <ProductInfoCard
             value="1 Year"

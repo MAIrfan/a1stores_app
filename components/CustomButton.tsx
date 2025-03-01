@@ -2,7 +2,7 @@ import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle, ActivityIndic
 import { Colors } from '@/constants';
 import { getShadow } from '@/helpers/shadow';
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
-type ButtonSize = 'small' | 'medium' | 'large';
+type ButtonSize = 'xsmall' | 'small' | 'medium' | 'large';
 
 interface CustomButtonProps {
   onPress: () => void;
@@ -93,6 +93,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   // Sizes
+  xsmall: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  },
   small: {
     paddingVertical: 8,
     paddingHorizontal: 16,
@@ -128,6 +132,9 @@ const styles = StyleSheet.create({
   },
   ghostText: {
     color: Colors.primary,
+  },
+  xsmallText: {
+    fontSize: 10,
   },
   smallText: {
     fontSize: 14,

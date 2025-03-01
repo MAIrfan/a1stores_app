@@ -14,12 +14,17 @@ export const STICKY_SUB_CATEGORIES_HEIGHT = HEADER_HEIGHT + SEARCH_HEIGHT + PACK
 export const PRODUCT_IMAGE_HEIGHT = 240;
 export const PRODUCT_CARD_WIDTH = SCREEN_WIDTH * 0.46;
 export const PRODUCT_CARD_SPACING = SCREEN_WIDTH * 0.04;
+export const ORDER_STATUS_IMAGE_HEIGHT = SCREEN_WIDTH * 0.5;
 
 export const Colors = {
   background: '#FFFFFF',
   primary: '#17A563',
   secondary: '#FF324B',
   tertiary: '#FFC107',
+  danger: '#FF1843',
+  blue: '#1A94FF',
+  orange: '#FC820A',
+  green: '#CDFFE2',
   stroke: '#F1F1F5',
   lightGrey: '#E0E0E0',
   lightGrey2: '#DBDBDB',

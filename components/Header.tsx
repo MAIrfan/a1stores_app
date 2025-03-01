@@ -15,9 +15,11 @@ type HeaderProps = {
   title?: string;
   style?: StyleProp<ViewStyle>;
   type?: "invert" | "default";
+  hideSearch?: boolean;
+  backButtonStyles?: StyleProp<ViewStyle>;
 };
 
-export const Header = ({ title, style, type = "default" }: HeaderProps) => (
+export const Header = ({ title, style, backButtonStyles, type = "default", hideSearch = false }: HeaderProps) => (
   <View
     style={[
       styles.container,
@@ -26,27 +28,29 @@ export const Header = ({ title, style, type = "default" }: HeaderProps) => (
     ]}
   >
     <TouchableOpacity
-      style={[styles.leftIconContainer, { backgroundColor: type === "invert" ? Colors.background : Colors.primaryLight }]}
+      style={[styles.leftIconContainer, { backgroundColor: type === "invert" ? Colors.background : Colors.primaryLight }, backButtonStyles]}
       onPress={() => router.back()}
     >
       <BackIcon />
     </TouchableOpacity>
     <Text style={styles.title}>{title || ""}</Text>
-    <View
-      style={[
-        styles.rightIconContainer,
-        {
-          backgroundColor:
-            type === "invert" ? Colors.background : Colors.transparent,
-        },
-      ]}
-    >
-      {type === "invert" && (
-        <TouchableOpacity>
-          <SearchIcon />
-        </TouchableOpacity>
-      )}
-    </View>
+    {!hideSearch && (
+      <View
+        style={[
+          styles.rightIconContainer,
+          {
+            backgroundColor:
+              type === "invert" ? Colors.background : Colors.transparent,
+          },
+        ]}
+      >
+        {type === "invert" && (
+          <TouchableOpacity>
+            <SearchIcon />
+          </TouchableOpacity>
+        )}
+      </View>
+    )}
   </View>
 );
 

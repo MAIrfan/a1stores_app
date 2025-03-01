@@ -88,7 +88,7 @@ export default function CategoriesPage() {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView color="transparent" />
+      <SafeAreaView />
       <Header title="Categories" />
       <FlatList
         data={categories}
