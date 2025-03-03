@@ -1,46 +1,42 @@
 import { View, Text, StyleSheet } from "react-native";
 
-import { LocationIcon } from "./LocationCircle";
+import { LocationCircle } from "./LocationCircle";
 import { Colors } from "@/constants";
+import { Address } from "@/types";
 
 type SelectedAddressItemProps = {
-  selectedAddress: {
-    type: string;
-    address: string;
-  };
+  selectedAddress: Address;
 };
 
 export const SelectedAddressItem = ({
   selectedAddress,
-}: SelectedAddressItemProps) => {
-  return (
-    <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
-      <LocationIcon size={24} />
-      <View style={styles.addressContainer}>
-        <Text style={styles.addressType}>{selectedAddress.type}</Text>
-        <Text style={styles.addressText}>{selectedAddress.address}</Text>
-      </View>
+}: SelectedAddressItemProps) => (
+  <View style={styles.container}>
+    <LocationCircle size={24} />
+    <View style={styles.wrapper}>
+      <Text style={styles.type}>{selectedAddress.type}</Text>
+      <Text style={styles.address}>{selectedAddress.address}</Text>
     </View>
-  );
-};
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
   },
-  addressContainer: {
+  wrapper: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  addressType: {
+  type: {
     fontSize: 18,
     fontWeight: "bold",
     color: Colors.dark,
   },
-  addressText: {
+  address: {
     fontSize: 14,
     color: Colors.grey,
     textAlign: "right",

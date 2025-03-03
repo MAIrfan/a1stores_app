@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.lightBg2,
     borderRadius: 12,
     padding: 16,
-    ...getShadow(4)
+    ...getShadow(16)
   },
   orderHeader: {
     flexDirection: 'row',

@@ -27,16 +27,12 @@ export default function OrderDetailsScreen() {
   const { id } = useLocalSearchParams();
   const order: any = orders.find((order: any) => order.id === id);
 
-  console.log(order);
   return (
     <View style={styles.container}>
       <SafeAreaView />
       <Header
-        type="invert"
         title={`Order ${order.id}`}
-        hideSearch
         style={styles.sectionPadding}
-        backButtonStyles={{ backgroundColor: Colors.primaryLight2 }}
       />
       <OrderStatusCard status={order.status} />
 

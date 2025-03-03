@@ -13,6 +13,7 @@ import { CartEmpty } from '@/components/CartEmpty';
 import { Radios } from '@/components/Radios';
 import { PayButton } from '@/components/PayButton';
 import { SelectedAddressItem } from '@/components/SelectedAddressItem';
+import { Address } from '@/types';
 
 type CartItem = {
   id: string;
@@ -25,15 +26,10 @@ type CartItem = {
 
 type DeliveryType = 'home' | 'pickup';
 
-type SelectedAddress = {
-  type: string;
-  address: string;
-} | null;
-
 export default function CartScreen() {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const [deliveryType, setDeliveryType] = useState<DeliveryType>('home');
-  const [selectedAddress, setSelectedAddress] = useState<SelectedAddress>(null);
+  const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
   const cartItems: CartItem[] = [
     {
       id: '1',
@@ -70,14 +66,6 @@ export default function CartScreen() {
 
   const handleAddressPress = useCallback(() => {
     bottomSheetRef.current?.present();
-  }, []);
-
-  const handleSheetClose = useCallback(() => {
-    bottomSheetRef.current?.dismiss();
-  }, []);
-
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
   }, []);
 
   const renderCheckoutButton = () => {
@@ -197,12 +185,8 @@ export default function CartScreen() {
 
       <AddressSheet 
         bottomSheetRef={bottomSheetRef}
-        onClose={handleSheetClose}
-        onChange={handleSheetChanges}
-        onSelectAddress={(address) => {
-          setSelectedAddress(address);
-          handleSheetClose();
-        }}
+        selectedAddress={selectedAddress}
+        onSelectAddress={(address) => setSelectedAddress(address)}
       />
     </View>
   );

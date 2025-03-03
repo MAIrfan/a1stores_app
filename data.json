@@ -276,5 +276,33 @@
         }
       ]
     }
+  ],
+  "addresses": [
+    {
+      "id": "1",
+      "type": "Home",
+      "address": "Asif Nagar, Hyderabad",
+      "isDefault": true
+    },
+    {
+      "id": "2",
+      "type": "My Office",
+      "address": "5259 Blue Bill Park, PC 4627"
+    },
+    {
+      "id": "3",
+      "type": "My Apartment",
+      "address": "21833 Clyde Gallagher, 4662"
+    },
+    {
+      "id": "4",
+      "type": "Parent’s House",
+      "address": "6993 Meadow Valley Terra"
+    },
+    {
+      "id": "5",
+      "type": "My Villa",
+      "address": "61480 Sunbrook Park, PC 5679"
+    }
   ]
 }

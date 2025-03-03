@@ -37,7 +37,7 @@ export const Circle = ({ animatedValue }: CircleProps) => {
           transform: [
             { translateY }
           ],
-          ...getShadow(8)
+          ...getShadow(16)
         }
       ]}
     />

@@ -1,8 +1,9 @@
 import Constants from 'expo-constants';
 import { Dimensions } from 'react-native';
 
-const { height } = Dimensions.get('window');
-export const SCREEN_WIDTH = Dimensions.get('window').width;
+const { width, height } = Dimensions.get('window');
+export const WINDOW_HEIGHT = height;
+export const SCREEN_WIDTH = width;
 export const STATUS_BAR_HEIGHT = Constants.statusBarHeight + 4;
 export const SCREEN_HEIGHT = height - STATUS_BAR_HEIGHT;
 export const HEADER_HEIGHT = 60;
@@ -15,6 +16,12 @@ export const PRODUCT_IMAGE_HEIGHT = 240;
 export const PRODUCT_CARD_WIDTH = SCREEN_WIDTH * 0.46;
 export const PRODUCT_CARD_SPACING = SCREEN_WIDTH * 0.04;
 export const ORDER_STATUS_IMAGE_HEIGHT = SCREEN_WIDTH * 0.5;
+
+export const SPLASH_LOGO_SIZE = 200;
+export const SPLASH_LOGO_SPACING = 50;
+export const SPLASH_STOKE_SIZE = 10;
+export const LOGO_CONTAINER_SIZE = SPLASH_LOGO_SIZE - SPLASH_LOGO_SPACING;
+export const SPLASH_SCREEN_DURATION = 6000;
 
 export const Colors = {
   background: '#FFFFFF',
@@ -34,7 +41,8 @@ export const Colors = {
   grey2: '#BDBDBD',
   dark: '#06161C',
   darkBg: '#0D1F29',
-  primaryLight: '#E8F5E9',
+  primaryLight: '#E8F9F2',
   primaryLight2: '#DCF2E5',
   transparent: 'transparent',
+  shadow: '#04060F',
 };

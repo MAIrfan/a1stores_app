@@ -178,7 +178,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     borderRadius: SPACING,
     overflow: 'hidden',
-    ...getShadow(8)
   },
   image: {
     height: '100%',

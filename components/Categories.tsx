@@ -244,6 +244,7 @@ const styles = StyleSheet.create({
   categoryItem: {
     alignItems: "center",
     marginRight: 16,
+    width: 84,
   },
   imageContainer: {
     width: 80,
@@ -251,17 +252,18 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 16,
     backgroundColor: Colors.lightBg,
+    borderWidth: 1,
+    borderColor: Colors.lightBg,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 8,
-    ...getShadow(4),
+    ...getShadow(20),
   },
   activeCategory: {
     backgroundColor: Colors.primaryLight,
-    borderRadius: 16,
     borderWidth: 1,
     borderColor: Colors.primary,
-    ...getShadow(4, Colors.primary),
+    ...getShadow(10, Colors.primary),
   },
   image: {
     width: "100%",
@@ -271,6 +273,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#666666",
     marginTop: 4,
+    textAlign: 'center',
   },
   activeCategoryTitle: {
     color: "#17A563",

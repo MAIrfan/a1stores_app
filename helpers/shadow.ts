@@ -1,7 +1,9 @@
-import { Colors } from '@/constants';
 import { ViewStyle } from 'react-native';
 
-export const getShadow = (depth: number, shadowColor: string = Colors.lightGrey2): ViewStyle => {
+import { Colors } from '@/constants';
+import { getColorOpacity } from './color';
+
+export const getShadow = (depth: number, shadowColor: string = getColorOpacity(Colors.shadow, 5)): ViewStyle => {
   if (depth <= 0) return {};
 
   const baseOffset = Math.floor(depth / 2);

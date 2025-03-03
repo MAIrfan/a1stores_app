@@ -1,58 +1,47 @@
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ViewStyle,
-  StyleProp,
-} from "react-native";
-import { router } from "expo-router";
+import { ReactNode } from "react";
+import { View, StyleSheet, Text, ViewStyle, StyleProp } from "react-native";
 
-import { BackIcon, SearchIcon } from "./Icons";
 import { Colors } from "@/constants";
+import { BackButton } from "./BackButton";
+import { HeaderRightButton } from "./HeaderRightButton";
 
 type HeaderProps = {
   title?: string;
   style?: StyleProp<ViewStyle>;
-  type?: "invert" | "default";
-  hideSearch?: boolean;
-  backButtonStyles?: StyleProp<ViewStyle>;
+  transparent?: boolean;
+  showSearch?: boolean;
+  rightNode?: ReactNode;
 };
 
-export const Header = ({ title, style, backButtonStyles, type = "default", hideSearch = false }: HeaderProps) => (
-  <View
-    style={[
-      styles.container,
-      { backgroundColor: type === "invert" ? Colors.transparent : Colors.background },
-      style,
-    ]}
-  >
-    <TouchableOpacity
-      style={[styles.leftIconContainer, { backgroundColor: type === "invert" ? Colors.background : Colors.primaryLight }, backButtonStyles]}
-      onPress={() => router.back()}
+export const Header = ({
+  title,
+  style,
+  transparent = false,
+  showSearch = false,
+  rightNode = null,
+}: HeaderProps) => {
+  const isHidden = !rightNode && !showSearch;
+  const backgroundColor = transparent ? Colors.transparent : Colors.background;
+  return (
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor,
+        },
+        style,
+      ]}
     >
-      <BackIcon />
-    </TouchableOpacity>
-    <Text style={styles.title}>{title || ""}</Text>
-    {!hideSearch && (
-      <View
-        style={[
-          styles.rightIconContainer,
-          {
-            backgroundColor:
-              type === "invert" ? Colors.background : Colors.transparent,
-          },
-        ]}
-      >
-        {type === "invert" && (
-          <TouchableOpacity>
-            <SearchIcon />
-          </TouchableOpacity>
-        )}
-      </View>
-    )}
-  </View>
-);
+      <BackButton primary={!transparent} />
+      <Text style={styles.title}>{title || ""}</Text>
+      <HeaderRightButton
+        hidden={isHidden}
+        transparent={transparent}
+        node={rightNode}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -61,22 +50,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingBottom: 16,
   },
-  leftIconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: "50%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   title: {
     fontSize: 18,
     fontWeight: "bold",
-  },
-  rightIconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: "50%",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });

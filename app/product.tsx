@@ -384,7 +384,7 @@ export default function ProductScreen() {
     <View style={styles.container}>
       <Circle animatedValue={scrollY} />
       <SafeAreaView />
-      <Header type="invert" style={{ paddingBottom: 0 }} />
+      <Header transparent />
       <Animated.ScrollView
         style={{ flex: 1 }}
         showsVerticalScrollIndicator={false}

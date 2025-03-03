@@ -19,10 +19,7 @@ export default function OrdersScreen() {
     <View style={styles.container}>
       <SafeAreaView />
       <Header
-        type="invert"
         title="Orders History"
-        hideSearch
-        backButtonStyles={{ backgroundColor: Colors.primaryLight2 }}
       />
 
       <Tabs
@@ -55,79 +52,5 @@ const styles = StyleSheet.create({
     gap: 24,
     paddingHorizontal: 8,
     paddingVertical: 24,
-  },
-  orderCard: {
-    backgroundColor: Colors.lightBg2,
-    borderRadius: 12,
-    padding: 16,
-    ...getShadow(4)
-  },
-  orderHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  statusBadge: {
-    backgroundColor: getColorOpacity(Colors.orange, 10),
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 100,
-  },
-  statusText: {
-    color: Colors.orange,
-    fontSize: 14,
-    fontWeight: '500',
-    textTransform: 'capitalize',
-  },
-  orderId: {
-    fontSize: 16,
-    color: Colors.dark,
-  },
-  storeInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  iconContainer: {
-    marginRight: 12,
-  },
-  storeName: {
-    flex: 1,
-    fontSize: 16,
-    fontWeight: '500',
-    color: Colors.dark,
-  },
-  orderDate: {
-    fontSize: 14,
-    color: Colors.dark,
-  },
-  addressInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  address: {
-    flex: 1,
-    fontSize: 16,
-    color: Colors.dark,
-  },
-  itemsList: {
-    gap: 16,
-  },
-  orderItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  itemName: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: Colors.dark,
-  },
-  itemUnit: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: Colors.dark,
   },
 });

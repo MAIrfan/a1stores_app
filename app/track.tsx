@@ -6,7 +6,7 @@ export default function TrackScreen() {
   return (
     <View>
       <SafeAreaView />
-      <Header type="invert" hideSearch style={{ paddingBottom: 0 }} />
+      <Header />
       <Text>Track</Text>
     </View>
   );

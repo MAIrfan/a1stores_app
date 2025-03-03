@@ -9,7 +9,6 @@ export const useFadeIn = (index: number) => {
   useEffect(() => {
     const delay = (index % 10) * 100;
     
-    console.log(index, delay);
     Animated.parallel([
       Animated.timing(opacity, {
         toValue: 1,

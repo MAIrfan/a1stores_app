@@ -39,7 +39,7 @@ export default function AccountScreen() {
       id: 'address',
       title: 'Address Book',
       icon: <AddressIcon color={Colors.primary} />,
-      route: 'address',
+      route: 'addresses',
       iconBg: Colors.primaryLight2,
     },
     {
@@ -54,7 +54,7 @@ export default function AccountScreen() {
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <Header type='invert' title='Account' hideSearch backButtonStyles={{ backgroundColor: Colors.primaryLight2 }} />
+      <Header title='Account' />
 
       <View style={styles.menuList}>
         {menuItems.map((item) => (

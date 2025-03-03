@@ -404,6 +404,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: Colors.lightGrey,
-    ...getShadow(4),
+    ...getShadow(16),
   },
 });

@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    ...getShadow(4),
+    ...getShadow(16),
   },
   fullWidth: {
     width: '100%',
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
   },
   secondary: {
-    backgroundColor: Colors.secondary,
+    backgroundColor: Colors.primaryLight,
   },
   outline: {
     backgroundColor: 'transparent',
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     color: Colors.background,
   },
   secondaryText: {
-    color: Colors.background,
+    color: Colors.primary,
   },
   outlineText: {
     color: Colors.primary,
