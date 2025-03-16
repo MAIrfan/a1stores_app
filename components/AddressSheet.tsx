@@ -11,6 +11,8 @@ import { Address } from "@/types";
 import { AddressItem } from "./AddressItem";
 
 import data from "@/data.json";
+import { Colors } from "@/constants";
+import { router } from "expo-router";
 
 type AddressSheetProps = {
   bottomSheetRef: React.RefObject<BottomSheetModal>;
@@ -46,33 +48,35 @@ export function AddressSheet({
     onSelectAddress(address);
     handleSheetClose();
   }, []);
+  const handleAddressPress = useCallback(() => {
+    handleSheetClose();
+    router.push("/address");
+  }, []);
 
   return (
     <BottomSheetModal
       ref={bottomSheetRef}
-      index={0}
       snapPoints={snapPoints}
       onDismiss={handleSheetClose}
       backdropComponent={renderBackdrop}
-      handleIndicatorStyle={styles.indicator}
       backgroundStyle={styles.sheetBg}
       enablePanDownToClose
+      handleComponent={() => (
+        <TouchableOpacity onPress={handleSheetClose} style={styles.closeButton}>
+          <CloseIcon />
+        </TouchableOpacity>
+      )}
     >
       <BottomSheetView style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Select Address</Text>
-          <TouchableOpacity
-            onPress={handleSheetClose}
-            style={styles.closeButton}
-          >
-            <CloseIcon />
-          </TouchableOpacity>
-        </View>
+        <Text style={styles.title}>Select Address</Text>
 
-        <View style={styles.content}>
+        <View>
           <View style={styles.addressHeader}>
             <Text style={styles.addressTitle}>Select Delivery Address</Text>
-            <TouchableOpacity style={styles.addButton}>
+            <TouchableOpacity
+              style={styles.addButton}
+              onPress={handleAddressPress}
+            >
               <Text style={styles.addButtonText}>Add New</Text>
             </TouchableOpacity>
           </View>
@@ -92,51 +96,32 @@ export function AddressSheet({
 }
 
 const styles = StyleSheet.create({
-  indicator: {
-    width: 36,
-    height: 4,
-    backgroundColor: "#DDD",
-    alignSelf: "center",
-    marginTop: 8,
-  },
   sheetBg: {
-    backgroundColor: "#fff",
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
+    backgroundColor: Colors.background,
   },
   container: {
-    flex: 1,
     padding: 16,
-  },
-  header: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 24,
-    position: "relative",
   },
   title: {
     fontSize: 18,
     fontWeight: "600",
     color: "#000",
+    textAlign: "center",
+    marginTop: 16,
+    marginBottom: 24,
   },
   closeButton: {
     position: "absolute",
-    right: 0,
-    top: 0,
-    width: 32,
-    height: 32,
+    top: -20,
+    left: "47%",
+    width: 40,
+    height: 40,
+    borderRadius: 40,
     backgroundColor: "#f0f9f4",
-    borderRadius: 16,
     alignItems: "center",
     justifyContent: "center",
-  },
-  closeIcon: {
-    width: 16,
-    height: 16,
-  },
-  content: {
-    flex: 1,
   },
   addressHeader: {
     flexDirection: "row",

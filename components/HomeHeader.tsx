@@ -1,26 +1,20 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, LayoutChangeEvent } from "react-native";
 import { router } from "expo-router";
 
 import { Colors, HEADER_HEIGHT } from "@/constants";
-import { LocationIcon, ChevronDownIcon, CartIcon, UserCircleIcon } from "./Icons";
+import { DeliveryAddress } from "./DeliveryAddress";
+import { CartIcon, UserCircleIcon } from "./Icons";
 
-export const HomeHeader = () => {
+type Props = {
+  getHeaderHeight?: (event: LayoutChangeEvent) => void;
+};
+
+export const HomeHeader = ({ getHeaderHeight }: Props) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.flexRow}>
-        <View style={{ marginRight: 8 }}>
-          <LocationIcon />
-        </View>
-        <View>
-          <Text style={styles.sentToText}>Deliver to</Text>
-          <TouchableOpacity style={styles.locationButton}>
-            <Text style={styles.locationText}>Asif Nagar, Hyderabad</Text>
-            <ChevronDownIcon style={styles.chevronDownIcon} />
-          </TouchableOpacity>
-        </View>
-      </View>
+    <View style={styles.container} onLayout={getHeaderHeight}>
+      <DeliveryAddress />
 
-      <View style={styles.iconsContainer}>
+      <View style={styles.iconsContainer} pointerEvents="auto">
         <TouchableOpacity style={styles.iconButton} onPress={() => router.push("/cart")}>
           <CartIcon />
           <View style={styles.badge}>
@@ -43,29 +37,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-  },
-  flexRow: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  sentToText: {
-    color: "#fff",
-    fontSize: 12,
-    opacity: 0.8,
-  },
-  locationText: {
-    color: "#fff",
-    fontSize: 14,
-    fontWeight: "500",
-  },
-  chevronDownIcon: {
-    marginLeft: 6,
-    marginTop: 2,
-    color: "#fff",
-  },
-  locationButton: {
-    flexDirection: "row",
-    alignItems: "center",
   },
   iconsContainer: {
     flexDirection: "row",

@@ -1,19 +1,20 @@
-import { View, Image, StyleSheet  } from "react-native";
+import { Image, StyleSheet, StyleProp, ViewStyle  } from "react-native";
+import Animated from "react-native-reanimated";
 
 import { Colors } from "@/constants";
 
 type Props = {
   size: number;
-  opacity: number;
+  style?: StyleProp<ViewStyle>;
 }
 
-export const CircleLogo = ({ size, opacity }: Props) => (
-  <View style={[styles.container, { width: size, height: size, borderRadius: size, opacity } ]}>
+export const CircleLogo = ({ size, style }: Props) => (
+  <Animated.View style={[styles.container, style, { width: size, height: size, borderRadius: size / 2 } ]}>
     <Image
       source={require("@/assets/images/a1stores.png")}
       style={styles.image}
     />
-  </View>
+  </Animated.View>
 );
 
 const styles = StyleSheet.create({

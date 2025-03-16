@@ -14,112 +14,19 @@ import {
 
 import { Colors, CATEGORIES_HEIGHT } from "@/constants";
 import { getShadow } from "@/helpers/shadow";
+import { Category } from "@/types";
+import data from "@/data.json";
 
-const categories = [
-  {
-    id: 1,
-    title: "Rice",
-    image: require("@/assets/categories/0.png"),
-    subcategories: [
-      {
-        id: 101,
-        title: "A-1 Raiwind HMT Zeera Rice",
-      },
-      {
-        id: 102,
-        title: "A Class",
-      },
-      {
-        id: 103,
-        title: "RRI",
-      },
-      {
-        id: 104,
-        title: "Gajraj",
-      },
-      {
-        id: 105,
-        title: "Nawab",
-      },
-      {
-        id: 106,
-        title: "Joker",
-      },
-      {
-        id: 107,
-        title: "Gajendra",
-      },
-      {
-        id: 108,
-        title: "Tomato",
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "Oil & Ghee",
-    image: require("@/assets/categories/2.png"),
-    subcategories: [
-      {
-        id: 201,
-        title: "Gold Drop Oil",
-      },
-      {
-        id: 202,
-        title: "Dalda Ghee",
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: "Dairy & Eggs",
-    image: require("@/assets/categories/3.png"),
-    subcategories: [
-      {
-        id: 301,
-        title: "Milk",
-      },
-      {
-        id: 302,
-        title: "Eggs",
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: "Fruits",
-    image: require("@/assets/categories/4.png"),
-    subcategories: [
-      {
-        id: 401,
-        title: "Apples",
-      },
-      {
-        id: 402,
-        title: "Bananas",
-      },
-    ],
-  },
-  {
-    id: 5,
-    title: "Vegetables",
-    image: require("@/assets/categories/5.png"),
-    subcategories: [
-      {
-        id: 501,
-        title: "Carrots",
-      },
-      {
-        id: 502,
-        title: "Tomatoes",
-      },
-    ],
-  },
-];
+const categories: Category[] = data.categories;
 
-export const Categories = () => {
+type CategoryProps = {
+  selectedCategory: Category;
+  setSelectedCategory: (category: Category) => void;
+  getCategoriesHeight?: (event: LayoutChangeEvent) => void;
+};
+
+export const Categories = ({ selectedCategory, setSelectedCategory, getCategoriesHeight }: CategoryProps) => {
   const scrollViewRef = useRef<ScrollView>(null);
-  const [selectedId, setSelectedId] = useState(1);
   const [itemLayouts, setItemLayouts] = useState<{
     [key: number]: LayoutRectangle;
   }>({});
@@ -158,13 +65,13 @@ export const Categories = () => {
     });
   };
 
-  const handleCategoryPress = (id: number) => {
-    setSelectedId(id);
-    scrollToCategory(id);
+  const handleCategoryPress = (category: Category) => {
+    setSelectedCategory(category);
+    scrollToCategory(category.id);
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} onLayout={getCategoriesHeight}>
       <View style={styles.header}>
         <Text style={styles.title}>Categories</Text>
         <TouchableOpacity onPress={() => router.navigate("/categories")}>
@@ -185,17 +92,17 @@ export const Categories = () => {
           <Pressable
             key={category.id}
             style={styles.categoryItem}
-            onPress={() => handleCategoryPress(category.id)}
+            onPress={() => handleCategoryPress(category)}
             onLayout={handleItemLayout(category.id)}
           >
             <View
               style={[
                 styles.imageContainer,
-                selectedId === category.id && styles.activeCategory,
+                selectedCategory.id === category.id && styles.activeCategory,
               ]}
             >
               <Image
-                source={category.image}
+                source={{ uri: category.image }}
                 style={styles.image}
                 resizeMode="contain"
               />
@@ -203,10 +110,10 @@ export const Categories = () => {
             <Text
               style={[
                 styles.categoryTitle,
-                selectedId === category.id && styles.activeCategoryTitle,
+                selectedCategory.id === category.id && styles.activeCategoryTitle,
               ]}
             >
-              {category.title}
+              {category.name}
             </Text>
           </Pressable>
         ))}

@@ -10,6 +10,7 @@ import {
 import { Header } from '@/components/Header';
 import { SafeAreaView } from '@/components';
 import { Colors } from '@/constants';
+import { getColorOpacity } from '@/helpers/color';
 type MenuItem = {
   id: string;
   title: string;
@@ -21,13 +22,6 @@ type MenuItem = {
 
 export default function AccountScreen() {
   const menuItems: MenuItem[] = [
-    {
-      id: 'profile',
-      title: 'Profile',
-      icon: <ProfileIcon color={Colors.primary} />,
-      route: 'profile',
-      iconBg: Colors.primaryLight2,
-    },
     {
       id: 'orders',
       title: 'My Orders',
@@ -47,7 +41,7 @@ export default function AccountScreen() {
       title: 'Logout',
       icon: <LogoutIcon color={Colors.primary} />,
       onPress: () => console.log('Logout pressed'),
-      iconBg: Colors.danger,
+      iconBg: getColorOpacity(Colors.danger, 10),
     },
   ];
 

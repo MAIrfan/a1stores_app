@@ -39,8 +39,6 @@ const styles = StyleSheet.create({
   },
   content: {
     backgroundColor: Colors.lightBg2,
-    padding: 16,
     borderRadius: 16,
-    gap: 14,
   },
 });

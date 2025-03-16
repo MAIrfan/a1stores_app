@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
+
 import { Colors } from '@/constants';
-import { Header } from '@/components/Header';
-import { getShadow } from '@/helpers/shadow';
-import { getColorOpacity } from '@/helpers/color';
-import { SafeAreaView } from '@/components/SafeAreaView';
-import { Tabs } from '@/components/Tabs';
-import { OrderCard } from '@/components/OrderCard';
-import { Order, OrderType } from '@/types';
+import { OrderType } from '@/types';
+import { Header, SafeAreaView, Tabs, OrderCard } from '@/components';
+
 import data from "@/data.json";
 
-const orders: Order[] = data.orders;
+const orders: any[] = data.orders;
 
 export default function OrdersScreen() {
   const [orderType, setOrderType] = useState<OrderType>('delivery');

@@ -7,7 +7,7 @@ import {
   ImageSourcePropType,
 } from "react-native";
 
-import { Colors } from "@/constants";
+import { Colors, WINDOW_WIDTH } from "@/constants";
 
 type ProductInfoCardProps = {
   value: string;
@@ -36,15 +36,17 @@ export const ProductInfoCard = ({
 
 const styles = StyleSheet.create({
   container: {
+    width: WINDOW_WIDTH / 2 - 20,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: Colors.background,
     padding: 16,
     borderRadius: 12,
-    width: "48%",
     borderWidth: 1,
     borderColor: Colors.lightGrey,
     gap: 16,
+    marginLeft: 10,
+    marginBottom: 10,
   },
   image: {
     width: 34,

@@ -1,15 +1,13 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 
-import { Counter } from "./Counter";
 import { Colors } from "@/constants";
-import { CartItem as CartItemType } from "@/types";
+import { CartItem } from "@/types";
 
 type CartItemProps = {
-  item: CartItemType;
-  setQuantity: (quantity: number) => void;
+  item: CartItem;
 };
 
-export const CartItem = ({ item, setQuantity }: CartItemProps) => {
+export const TrackItem = ({ item }: CartItemProps) => {
   return (
     <View style={styles.container}>
       <Image source={{ uri: item.image }} style={styles.image} />
@@ -17,10 +15,7 @@ export const CartItem = ({ item, setQuantity }: CartItemProps) => {
         <Text style={styles.title}>{item.product_name}</Text>
         <Text style={styles.price}>{item.variant_name}, Rs {item.price}</Text>
       </View>
-      <Counter
-        quantity={item.quantity}
-        setQuantity={setQuantity}
-      />
+      <Text style={styles.quantity}>x {item.quantity}</Text>
     </View>
   );
 };
@@ -31,8 +26,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.lightGrey,
   },
   image: {
     width: 54,
@@ -44,14 +37,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
     marginBottom: 4,
     color: Colors.dark,
   },
   price: {
-    fontSize: 16,
+    fontSize: 14,
     color: Colors.primary,
     fontWeight: '500',
+  },
+  quantity: {
+    fontSize: 14,
+    color: Colors.dark,
   },
 });

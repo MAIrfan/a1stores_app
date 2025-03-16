@@ -1,22 +1,35 @@
-import { StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import {
+  LayoutChangeEvent,
+  Pressable,
+  StyleSheet,
+  TextInput,
+} from "react-native";
 import { router } from "expo-router";
 
-import { Colors, SEARCH_HEIGHT, SCREEN_WIDTH } from "@/constants";
+import { Colors, SEARCH_HEIGHT, WINDOW_WIDTH } from "@/constants";
 import { SearchIcon } from "./Icons";
 
 const SPACING = 16;
 
-export const Search = () => {
+type Props = {
+  getSearchHeight?: (event: LayoutChangeEvent) => void;
+};
+
+export const Search = ({ getSearchHeight }: Props) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={() => router.push("/search")}>
+    <Pressable
+      style={styles.container}
+      onPress={() => router.push("/search")}
+      onLayout={getSearchHeight}
+    >
       <SearchIcon style={styles.icon} />
       <TextInput
         style={styles.input}
-        placeholder={'Search for fruits, vegetables, groceries...'}
+        placeholder={"Search for fruits, vegetables, groceries..."}
         placeholderTextColor={Colors.grey2}
         editable={false}
       />
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
@@ -24,21 +37,21 @@ const styles = StyleSheet.create({
   container: {
     height: SEARCH_HEIGHT,
     backgroundColor: Colors.primary,
-    width: '100%',
-    position: 'relative',
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: "100%",
+    position: "relative",
+    alignItems: "center",
+    justifyContent: "center",
   },
   icon: {
-    position: 'absolute',
-    left: 24,
+    position: "absolute",
+    left: 26,
     top: 20,
     zIndex: 1,
     color: Colors.grey2,
   },
   input: {
     height: SEARCH_HEIGHT - SPACING - 4,
-    width: SCREEN_WIDTH - SPACING * 2,
+    width: WINDOW_WIDTH - SPACING * 2,
     paddingLeft: 36,
     borderRadius: 8,
     backgroundColor: Colors.background,

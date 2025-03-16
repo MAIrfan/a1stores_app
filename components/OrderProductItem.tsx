@@ -1,23 +1,21 @@
-import { Colors } from "@/constants";
 import { View, Text, Image, StyleSheet } from "react-native";
 
+import { Colors } from "@/constants";
+import { OrderItem } from "@/types";
+
 type OrderProductItemProps = {
-  image: any;
-  title: string;
-  price: string;
-  unitQty: number;
-  unit: string;
+  item: OrderItem;
 };
 
-export const OrderProductItem = ({ image, title, price, unitQty, unit }: OrderProductItemProps) => (
+export const OrderProductItem = ({ item }: OrderProductItemProps) => (
   <View style={styles.container}>
     <Image
-      source={image}
+      source={{ uri: item.image }}
       style={styles.image}
     />
     <View style={styles.wrapper}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.price}>{`${unitQty} ${unit}, Rs ${price}`}</Text>
+      <Text style={styles.title}>{item.product_name}</Text>
+      <Text style={styles.price}>{`${item.variant_name}, Rs ${item.price}`}</Text>
     </View>
   </View>
 );
@@ -27,6 +25,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
+    margin: 16
   },
   image: {
     width: 65,

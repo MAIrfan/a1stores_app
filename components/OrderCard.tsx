@@ -86,9 +86,9 @@ export const OrderCard = ({ type, order }: OrderCardProps) => {
         {order.items.map((item, index) => (
           <View key={index} style={styles.orderItem}>
             <Text style={styles.itemName}>
-              {item.name} x {item.quantity}
+              {item.product_name} x {item.quantity}
             </Text>
-            <Text style={styles.itemUnit}>{item.unit}</Text>
+            <Text style={styles.itemUnit}>{item.variant_name}</Text>
           </View>
         ))}
       </View>

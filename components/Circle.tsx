@@ -2,7 +2,7 @@ import { Animated } from "react-native";
 import { Colors, PRODUCT_IMAGE_HEIGHT } from "@/constants";
 import { getShadow } from "@/helpers/shadow";
 
-const SIZE = PRODUCT_IMAGE_HEIGHT * 5;
+const SIZE = PRODUCT_IMAGE_HEIGHT * 5.8;
 
 interface CircleProps {
   animatedValue: Animated.Value;

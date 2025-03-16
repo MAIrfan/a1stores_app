@@ -1,6 +1,8 @@
 import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle, ActivityIndicator, View } from 'react-native';
+
 import { Colors } from '@/constants';
 import { getShadow } from '@/helpers/shadow';
+
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
 type ButtonSize = 'xsmall' | 'small' | 'medium' | 'large';
 

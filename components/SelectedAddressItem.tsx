@@ -27,9 +27,6 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
   },
   type: {
     fontSize: 18,
@@ -39,6 +36,5 @@ const styles = StyleSheet.create({
   address: {
     fontSize: 14,
     color: Colors.grey,
-    textAlign: "right",
   },
 });

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -8,42 +8,42 @@ import Animated, {
   interpolate,
   Easing,
 } from "react-native-reanimated";
+
+import { CircleLogo } from "./CircleLogo";
 import {
   Colors,
-  SPLASH_LOGO_SIZE,
-  SPLASH_LOGO_SPACING,
-  SPLASH_STOKE_SIZE,
   LOGO_CONTAINER_SIZE,
+  SPLASH_SCREEN_DURATION,
   WINDOW_HEIGHT,
+  WINDOW_WIDTH,
 } from "@/constants";
-import { CircleLogo } from "./CircleLogo";
 
 const HEIGHT = WINDOW_HEIGHT + 150;
+const CIRCLE_TIME = 1500;
 
 export const AppIntro = () => {
-  const circleAnimateValue = useSharedValue(0);
-  const logoAnimateValue = useSharedValue(0);
-  const textAnimateValue = useSharedValue(0);
+  const circle = useSharedValue(0);
+  const logo = useSharedValue(0);
+  const opacity = useSharedValue(0);
 
   useEffect(() => {
-    circleAnimateValue.value = withTiming(
-      2000,
+    circle.value = withTiming(
+      CIRCLE_TIME,
       {
-        duration: 3000,
+        duration: SPLASH_SCREEN_DURATION * 0.37,
         easing: Easing.out(Easing.exp),
       },
       () => {
-        logoAnimateValue.value = withTiming(
+        logo.value = withTiming(
           250,
           {
-            duration: 3000,
-            easing: Easing.inOut(Easing.exp),
+            duration: SPLASH_SCREEN_DURATION * 0.5,
+            easing: Easing.out(Easing.exp),
           },
           () => {
-            // After the logo animation, animate the text
-            textAnimateValue.value = withDelay(
-              200,
-              withTiming(1, { duration: 1000 })
+            opacity.value = withDelay(
+              100,
+              withTiming(1, { duration: SPLASH_SCREEN_DURATION * 0.13 })
             );
           }
         );
@@ -52,30 +52,37 @@ export const AppIntro = () => {
   }, []);
 
   const circleStyle = useAnimatedStyle(() => ({
-    height: interpolate(circleAnimateValue.value, [0, 2000], [0, HEIGHT]),
-    width: interpolate(circleAnimateValue.value, [0, 2000], [0, HEIGHT]),
-    borderRadius: interpolate(circleAnimateValue.value, [0, 2000], [0, HEIGHT / 2]),
+    height: interpolate(circle.value, [0, CIRCLE_TIME], [0, HEIGHT]),
+    width: interpolate(circle.value, [0, CIRCLE_TIME], [0, HEIGHT]),
+    borderRadius: interpolate(circle.value, [0, CIRCLE_TIME], [0, HEIGHT / 2]),
   }));
 
   const logoStyle = useAnimatedStyle(() => ({
     transform: [
       {
-        translateY: - interpolate(logoAnimateValue.value, [0, 1], [0, 1]),
+        translateY: -interpolate(logo.value, [0, 1], [0, 1]),
       },
     ],
   }));
 
-  const textStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(textAnimateValue.value, [0, 1], [0, 1]),
+  const opacityStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(opacity.value, [0, 1], [0, 1]),
   }));
 
   return (
     <Animated.View style={styles.container}>
       <Animated.View style={[styles.circle, circleStyle]} />
-      <CircleLogo size={LOGO_CONTAINER_SIZE} opacity={interpolate(circleAnimateValue.value, [0, 2000], [1, 0])}/>
-      <Animated.Text style={[styles.text, textStyle]}>
+      <CircleLogo size={LOGO_CONTAINER_SIZE} style={logoStyle} />
+      <Animated.Text style={[styles.title, opacityStyle]}>
         Get your groceries delivered to your home
       </Animated.Text>
+      <Animated.Text style={[styles.subtitle, opacityStyle]}>
+        The best delivery app in town for delivering your daily fresh groceries
+      </Animated.Text>
+      <Animated.Image
+        source={require("@/assets/images/grocery-intro.png")}
+        style={[styles.image, opacityStyle]}
+      />
     </Animated.View>
   );
 };
@@ -93,10 +100,26 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: Colors.background,
   },
-  text: {
-    width: '80%',
+  title: {
+    width: "80%",
     fontSize: 32,
     fontWeight: "500",
-    textAlign: "center"
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  subtitle: {
+    width: "80%",
+    fontSize: 20,
+    fontWeight: "400",
+    textAlign: "center",
+    color: Colors.grey,
+    marginBottom: 200,
+  },
+  image: {
+    position: "absolute",
+    bottom: -20,
+    width: WINDOW_WIDTH,
+    height: WINDOW_WIDTH,
+    resizeMode: "contain",
   },
 });

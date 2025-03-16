@@ -1,85 +1,13 @@
 import React from 'react';
 import { router } from 'expo-router';
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, ImageSourcePropType, FlatList } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 
 import { Colors } from '@/constants';
 import { getShadow } from '@/helpers/shadow';
-import { Header } from '@/components/Header';
-import { SafeAreaView } from '@/components';
+import { Header, SafeAreaView } from '@/components';
+import { Category } from '@/types';
 
-interface Category {
-  id: number;
-  title: string;
-  image: ImageSourcePropType;
-}
-
-const categories: Category[] = [
-  {
-    id: 1,
-    title: 'Vegetables & Fruits',
-    image: require('@/assets/categories/0.png'),
-  },
-  {
-    id: 2,
-    title: 'Dairy & Breakfast',
-    image: require('@/assets/categories/1.png'),
-  },
-  {
-    id: 3,
-    title: 'Munchies',
-    image: require('@/assets/categories/2.png'),
-  },
-  {
-    id: 4,
-    title: 'Cold Drinks & Juices',
-    image: require('@/assets/categories/3.png'),
-  },
-  {
-    id: 5,
-    title: 'Instant & Frozen Food',
-    image: require('@/assets/categories/5.png'),
-  },
-  {
-    id: 6,
-    title: 'Tea, Coffee & Health Drinks',
-    image: require('@/assets/categories/6.png'),
-  },
-  {
-    id: 7,
-    title: 'Bakery & Biscuits',
-    image: require('@/assets/categories/7.png'),
-  },
-  {
-    id: 8,
-    title: 'Sweet Tooth',
-    image: require('@/assets/categories/8.png'),
-  },
-  {
-    id: 9,
-    title: 'Atta, Rice & Dal',
-    image: require('@/assets/categories/2.png'),
-  },
-  {
-    id: 10,
-    title: 'Dry Fruits, Masala & Oil',
-    image: require('@/assets/categories/3.png'),
-  },
-  {
-    id: 11,
-    title: 'Sauces & Spreads',
-    image: require('@/assets/categories/4.png'),
-  },
-  {
-    id: 12,
-    title: 'Chicken, Meat & Fish',
-    image: require('@/assets/categories/5.png'),
-  },
-  {
-    id: 13,
-    title: 'Paan Corner',
-    image: require('@/assets/categories/6.png'),
-  },
-];
+import data from "@/data.json";
 
 export default function CategoriesPage() {
   const handleCategorySelect = (category: Category) => {
@@ -91,7 +19,7 @@ export default function CategoriesPage() {
       <SafeAreaView />
       <Header title="Categories" />
       <FlatList
-        data={categories}
+        data={data.categories}
         renderItem={({ item }) => (
           <TouchableOpacity
             key={item.id}
@@ -99,9 +27,9 @@ export default function CategoriesPage() {
             onPress={() => handleCategorySelect(item)}
           >
             <View style={styles.imageContainer}>
-              <Image source={item.image} style={styles.image} />
+              <Image source={{ uri: item.image }} style={styles.image} />
             </View>
-            <Text style={styles.categoryTitle}>{item.title}</Text>
+            <Text style={styles.categoryTitle}>{item.name}</Text>
           </TouchableOpacity>
         )}
         numColumns={2}
